@@ -18,15 +18,18 @@
             justify-content: center;
             align-items: center;
             font-family: 'Arial', sans-serif;
-            overflow: hidden;
+            overflow-y: auto;
+            padding: 20px;
         }
 
         .container {
             text-align: center;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 60px 40px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px 30px;
             border-radius: 20px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            max-width: 800px;
+            width: 100%;
         }
 
         h1 {
@@ -56,8 +59,10 @@
 
         .button-container {
             margin-top: 40px;
-            position: relative;
-            height: 60px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
         }
 
         #yesBtn, #noBtn {
@@ -68,15 +73,12 @@
             cursor: pointer;
             font-weight: bold;
             transition: all 0.3s ease;
-            position: absolute;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         #yesBtn {
             background-color: #28a745;
             color: white;
-            left: 20px;
-            top: 0;
         }
 
         #yesBtn:hover {
@@ -88,16 +90,22 @@
         #noBtn {
             background-color: #dc3545;
             color: white;
-            right: 20px;
-            top: 0;
+        }
+
+        #noBtn:hover {
+            background-color: #c82333;
+            transform: scale(1.05);
         }
 
         .success-message {
             display: none;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .success-text {
             font-size: 2.5em;
             color: #ff1493;
-            margin-top: 40px;
-            animation: fadeIn 1s ease-in;
+            margin: 30px 0;
         }
 
         @keyframes fadeIn {
@@ -105,11 +113,51 @@
             to { opacity: 1; }
         }
 
+        .gallery-section {
+            display: none;
+            margin-top: 40px;
+        }
+
+        .gallery-title {
+            color: #ff1493;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+            aspect-ratio: 1;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.08);
+            box-shadow: 0 6px 20px rgba(255, 20, 147, 0.3);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
         .floating-heart {
             position: fixed;
             font-size: 2em;
             pointer-events: none;
             animation: float-up 3s ease-in forwards;
+            z-index: 1000;
         }
 
         @keyframes float-up {
@@ -139,8 +187,26 @@
     </div>
     
     <div class="success-message" id="successMsg">
-        ❤️ ❤️ ❤️<br>
-        <span style="font-size: 0.8em;">I Love You! 💕</span>
+        <div class="success-text">❤️ ❤️ ❤️</div>
+        <div class="success-text" style="font-size: 1.5em;">I Love You! 💕</div>
+        
+        <div class="gallery-section" id="gallery">
+            <div class="gallery-title">Our Memories 📸</div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="10c2e193-55d7-430e-8f80-3d523399f4d3.JPG" alt="Memory 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="80b7eee3-3c7a-48ad-b2fd-8c7f68ba5894.JPG" alt="Memory 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="IMG_3719.jpg" alt="Memory 3">
+                </div>
+                <div class="gallery-item">
+                    <img src="copy_9D4517F5-6B07-4319-AB14-C26E5E8FF78E.jpg" alt="Memory 4">
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -149,18 +215,19 @@
         document.querySelector('.question').style.display = 'none';
         document.querySelector('.button-container').style.display = 'none';
         document.getElementById('successMsg').style.display = 'block';
+        document.getElementById('gallery').style.display = 'block';
         
-        // Create floating hearts
         createHearts();
     }
 
     function moveNo() {
+        var btn = document.getElementById("noBtn");
         var x = Math.random() * (window.innerWidth - 120);
         var y = Math.random() * (window.innerHeight - 60);
         
-        document.getElementById("noBtn").style.position = "fixed";
-        document.getElementById("noBtn").style.left = x + "px";
-        document.getElementById("noBtn").style.top = y + "px";
+        btn.style.position = "fixed";
+        btn.style.left = x + "px";
+        btn.style.top = y + "px";
     }
 
     function createHearts() {
