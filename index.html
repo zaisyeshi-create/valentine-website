@@ -201,18 +201,18 @@ function createSmallHearts(){
   }
 }
 
-/* 4 SEPARATE HEARTS WITH 4 PHOTOS */
+/* 4 HEARTS — NEVER OVERLAP */
 function showHeartPhotos(){
   const images=["img1.jpg","img2.jpg","img3.jpg","img4.jpg"];
   const container=document.getElementById("heartContainer");
 
-  const positions=["10%","30%","55%","75%"];
+  const positions=["5%","30%","60%","85%"]; // spaced apart
 
   images.forEach((src,index)=>{
     const heart=document.createElement("div");
     heart.className="photo-heart";
     heart.style.left=positions[index];
-    heart.style.bottom="0px";
+    heart.style.bottom="-50px";
 
     const img=document.createElement("img");
     img.src=src;
