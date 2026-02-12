@@ -100,12 +100,10 @@ h1{
   min-width:130px;   /* phone minimum */
   min-height:130px;
   animation: floatUp 7s ease forwards;
+transform: translateX(-50%); /* keeps heart fully inside position */
 }
 
-
-  transform: translateX(-50%); /* keeps heart fully inside position */
-
-
+  
 /* actual heart mask */
 .photo-heart img{
   width:100%;
@@ -197,7 +195,7 @@ function showHeartPhotos(){
   const container=document.getElementById("heartContainer");
 
  /* perfect spacing for phone + laptop */
-const positions = ["5%","30%","55%","80%"]; // far apart
+const positions = ["5%","30%","55%","80%"];// far apart
 
   images.forEach((src,index)=>{
     const heart=document.createElement("div");
